@@ -48,14 +48,12 @@ public class AggregatorService {
     }
 
     public List<Entry> getWordsThatContainSpecificConsecutiveLetters(String chars) {
+          List<Entry> wordsThatContainSuccessiveLetters = aggregatorRestClient.getWordsThatContainSpecificConsecutiveLetters(chars);
 
-        List<Entry> wordsThatContainSuccessiveLetters = aggregatorRestClient.getWordsThatContainSpecificConsecutiveLetters();
-
-        List<Entry> common = new ArrayList<>(wordsThatContainSuccessiveLetters );
-        common.removeIf(entry -> !entry.getWord().contains(chars));
-
-
-        return common;
+          List<Entry> common = new ArrayList<>(wordsThatContainSuccessiveLetters);
+          common.removeIf(entry -> !entry.getWord()
+                                         .contains(chars));
+          return common;
     }
 
     public List<Entry> getAllPalindromes() {
